@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Exclusive Welcome Offer</title>
+    <title>Shark Casino — Welcome Bonus up to $1,200 + 175 Free Spins</title>
+    <meta name="description" content="Claim your exclusive 4-tier welcome package at Shark Casino. Up to $1,200 in match bonuses plus 175 free spins across your first four deposits.">
+    <meta property="og:title" content="Shark Casino — Welcome Bonus up to $1,200 + 175 Free Spins">
+    <meta property="og:description" content="Your exclusive 4-tier welcome package is ready. Up to $1,200 in match bonuses plus 175 free spins.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shark-landing-page.onrender.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦈</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -541,6 +548,64 @@
             position: relative;
             display: inline-block;
         }
+
+        /* CTA pulse animation */
+        @keyframes cta-pulse {
+            0%, 100% { box-shadow: 0 4px 24px rgba(95, 192, 212, 0.3); }
+            50% { box-shadow: 0 4px 40px rgba(95, 192, 212, 0.5), 0 0 0 8px rgba(95, 192, 212, 0.08); }
+        }
+
+        .cta-button {
+            animation: cta-pulse 2.5s ease-in-out infinite;
+        }
+
+        .cta-button:hover {
+            animation: none;
+        }
+
+        /* Trust indicators */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease-out 0.95s forwards;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .trust-item svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--cyan);
+            opacity: 0.7;
+        }
+
+        /* T&Cs link */
+        .terms-link {
+            margin-top: 8px;
+            font-size: 11px;
+        }
+
+        .terms-link a {
+            color: rgba(156, 163, 175, 0.5);
+            text-decoration: underline;
+            text-decoration-color: rgba(156, 163, 175, 0.2);
+            transition: color 0.2s;
+        }
+
+        .terms-link a:hover {
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 <body>
@@ -632,7 +697,7 @@
                 <div class="tier-number">Tier 3</div>
                 <div class="tier-match">50%</div>
                 <div class="tier-amount">up to $300</div>
-                <div class="tier-spins" style="opacity: 0; pointer-events: none;">—</div>
+                <div class="tier-spins">Match Only</div>
             </div>
             <div class="tier-card">
                 <div class="tier-number">Tier 4</div>
@@ -663,6 +728,22 @@
                 <span class="green-dot"></span>
                 2,847 players joined this week
             </p>
+            <p class="terms-link"><a href="#">T&Cs apply. Min deposit $20. 35x wagering.</a></p>
+        </div>
+
+        <div class="trust-bar">
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                SSL Secured
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Licensed &amp; Regulated
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                Fast Payouts
+            </div>
         </div>
 
         <div class="timer-section">
@@ -696,9 +777,18 @@
     </div>
 
     <script>
-        // Countdown timer — starts from 2 days 14 hours 37 mins
-        // In production, calculate from a cookie/param to make it consistent per user
-        let totalSeconds = (2 * 86400) + (14 * 3600) + (37 * 60);
+        // Countdown timer — persists across page reloads via localStorage
+        const TIMER_KEY = 'shark_offer_expires';
+        const DEFAULT_SECONDS = (2 * 86400) + (14 * 3600) + (37 * 60);
+        let stored = localStorage.getItem(TIMER_KEY);
+        let totalSeconds;
+        if (stored) {
+            const expiresAt = parseInt(stored, 10);
+            totalSeconds = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
+        } else {
+            totalSeconds = DEFAULT_SECONDS;
+            localStorage.setItem(TIMER_KEY, String(Date.now() + DEFAULT_SECONDS * 1000));
+        }
 
         function updateTimer() {
             const days = Math.floor(totalSeconds / 86400);
@@ -730,13 +820,16 @@
             this.setAttribute('href', `${baseUrl}?ref=landing&src=${source}&n=${name}`);
         });
 
-        // Personalization from URL params
+        // Personalization from URL params (sanitized)
         // Usage: yourdomain.com/welcome?n=John
         const urlParams = new URLSearchParams(window.location.search);
         const userName = urlParams.get('n');
         if (userName) {
-            document.querySelector('.main-heading h1').innerHTML = 
-                `Hey ${userName},<br/>Welcome to<br/><span class="highlight">Shark Casino</span>`;
+            const safe = userName.replace(/[<>"'&]/g, '');
+            if (safe) {
+                document.querySelector('.main-heading h1').innerHTML =
+                    `Hey ${safe},<br/>Welcome to<br/><span class="highlight">Shark Casino</span>`;
+            }
         }
     </script>
 </body>
