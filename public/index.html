@@ -141,14 +141,15 @@
         }
 
         .shark-icon {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             position: relative;
         }
 
-        .shark-icon svg {
+        .shark-icon img {
             width: 100%;
             height: 100%;
+            object-fit: contain;
             filter: drop-shadow(0 0 20px rgba(95, 192, 212, 0.3));
         }
 
@@ -560,13 +561,13 @@
             }
 
             .shark-icon {
-                width: 60px;
-                height: 60px;
+                width: 90px;
+                height: 90px;
             }
 
             .glow-ring {
-                width: 90px;
-                height: 90px;
+                width: 120px;
+                height: 120px;
             }
 
             .exclusive-badge {
@@ -730,42 +731,7 @@
             <div class="logo-wrapper">
                 <div class="glow-ring"></div>
                 <div class="shark-icon">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Shark body -->
-                        <path d="M15 50 Q15 30 35 28 Q50 26 65 32 Q80 38 88 50 Q80 62 65 68 Q50 74 35 72 Q15 70 15 50Z" 
-                              fill="url(#sharkGrad)" stroke="rgba(95,192,212,0.3)" stroke-width="1"/>
-                        <!-- Dorsal fin -->
-                        <path d="M45 28 L50 12 L58 30" fill="url(#finGrad)" stroke="rgba(95,192,212,0.2)" stroke-width="0.5"/>
-                        <!-- Tail -->
-                        <path d="M15 50 L5 35 L12 48 M15 50 L5 65 L12 52" fill="url(#tailGrad)" stroke="rgba(95,192,212,0.2)" stroke-width="0.5"/>
-                        <!-- Belly -->
-                        <path d="M30 55 Q50 65 75 52" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                        <!-- Eye -->
-                        <circle cx="72" cy="46" r="4" fill="#0F1526" stroke="var(--cyan)" stroke-width="1.5"/>
-                        <circle cx="73" cy="45" r="1.5" fill="var(--cyan)"/>
-                        <!-- Gills -->
-                        <path d="M62 44 L60 52" stroke="rgba(95,192,212,0.2)" stroke-width="0.8"/>
-                        <path d="M58 43 L56 53" stroke="rgba(95,192,212,0.2)" stroke-width="0.8"/>
-                        <!-- Mouth -->
-                        <path d="M82 52 Q76 56 68 55" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                        <!-- Teeth hint -->
-                        <path d="M80 52 L78 55 L76 52 L74 55 L72 52" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.6"/>
-                        <defs>
-                            <linearGradient id="sharkGrad" x1="15" y1="30" x2="88" y2="70">
-                                <stop offset="0%" stop-color="#1565C0"/>
-                                <stop offset="50%" stop-color="#1E88E5"/>
-                                <stop offset="100%" stop-color="#5FC0D4"/>
-                            </linearGradient>
-                            <linearGradient id="finGrad" x1="45" y1="12" x2="58" y2="30">
-                                <stop offset="0%" stop-color="#5FC0D4"/>
-                                <stop offset="100%" stop-color="#1E88E5"/>
-                            </linearGradient>
-                            <linearGradient id="tailGrad" x1="5" y1="35" x2="15" y2="65">
-                                <stop offset="0%" stop-color="#1565C0"/>
-                                <stop offset="100%" stop-color="#1E88E5"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                    <img src="logo.webp" alt="Shark Casino Logo">
                 </div>
             </div>
         </div>
