@@ -10,6 +10,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sharkdivein.com">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦈</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -438,69 +439,6 @@
             transform: translateX(4px);
         }
 
-        .cta-sub {
-            margin-top: 16px;
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        .cta-sub .green-dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background: var(--success);
-            border-radius: 50%;
-            margin-right: 4px;
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-
-        /* Timer */
-        .timer-section {
-            margin-top: 48px;
-            text-align: center;
-            opacity: 0;
-            animation: fadeUp 0.8s ease-out 1s forwards;
-        }
-
-        .timer-label {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-        }
-
-        .timer-display {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-        }
-
-        .timer-block {
-            background: var(--dark-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 12px 16px;
-            min-width: 64px;
-            text-align: center;
-        }
-
-        .timer-num {
-            font-family: 'Space Mono', monospace;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--cyan);
-        }
-
-        .timer-unit {
-            font-size: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-top: 2px;
-        }
-
         /* Footer */
         .footer {
             margin-top: 64px;
@@ -622,30 +560,12 @@
                 max-width: 700px;
             }
 
-            .cta-sub {
-                font-size: 12px;
-            }
-
             .trust-bar {
                 gap: 16px;
             }
 
             .trust-item {
                 font-size: 11px;
-            }
-
-            .timer-section {
-                margin-top: 32px;
-            }
-
-            .timer-block {
-                padding: 10px 12px;
-                min-width: 56px;
-                border-radius: 10px;
-            }
-
-            .timer-num {
-                font-size: 20px;
             }
 
             .footer {
@@ -738,7 +658,7 @@
 
         <div class="exclusive-badge">
             <span class="dot"></span>
-            Exclusive Offer
+            New Player Bonus
         </div>
 
         <div class="main-heading">
@@ -793,11 +713,7 @@
                 Claim Your Welcome Offer
                 <span class="cta-arrow">→</span>
             </a>
-            <p class="cta-sub">
-                <span class="green-dot"></span>
-                2,847 players joined this week
-            </p>
-            <p class="terms-link"><a href="#">T&Cs apply. Min deposit $30. 40x wagering.</a></p>
+            <p class="terms-link"><a href="/terms.html">T&Cs apply. Min deposit $30. 40x wagering.</a></p>
         </div>
 
         <div class="trust-bar">
@@ -815,70 +731,17 @@
             </div>
         </div>
 
-        <div class="timer-section">
-            <div class="timer-label">Offer Expires In</div>
-            <div class="timer-display">
-                <div class="timer-block">
-                    <div class="timer-num" id="days">02</div>
-                    <div class="timer-unit">Days</div>
-                </div>
-                <div class="timer-block">
-                    <div class="timer-num" id="hours">14</div>
-                    <div class="timer-unit">Hours</div>
-                </div>
-                <div class="timer-block">
-                    <div class="timer-num" id="mins">37</div>
-                    <div class="timer-unit">Mins</div>
-                </div>
-                <div class="timer-block">
-                    <div class="timer-num" id="secs">00</div>
-                    <div class="timer-unit">Secs</div>
-                </div>
-            </div>
-        </div>
-
         <div class="footer">
             <p>
-                <a href="https://sharkcasino.com">sharkcasino.com</a> · 18+ · Play responsibly<br/>
+                <a href="https://sharkdivein.com">sharkdivein.com</a> · 18+ · Play responsibly<br/>
+                <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms &amp; Conditions</a><br/>
                 If you or someone you know has a gambling problem, please seek help.
             </p>
         </div>
     </div>
 
     <script>
-        // Countdown timer — persists across page reloads via localStorage
-        const TIMER_KEY = 'shark_offer_expires';
-        const DEFAULT_SECONDS = (2 * 86400) + (14 * 3600) + (37 * 60);
-        let stored = localStorage.getItem(TIMER_KEY);
-        let totalSeconds;
-        if (stored) {
-            const expiresAt = parseInt(stored, 10);
-            totalSeconds = Math.max(0, Math.floor((expiresAt - Date.now()) / 1000));
-        } else {
-            totalSeconds = DEFAULT_SECONDS;
-            localStorage.setItem(TIMER_KEY, String(Date.now() + DEFAULT_SECONDS * 1000));
-        }
-
-        function updateTimer() {
-            const days = Math.floor(totalSeconds / 86400);
-            const hours = Math.floor((totalSeconds % 86400) / 3600);
-            const mins = Math.floor((totalSeconds % 3600) / 60);
-            const secs = totalSeconds % 60;
-
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('mins').textContent = String(mins).padStart(2, '0');
-            document.getElementById('secs').textContent = String(secs).padStart(2, '0');
-
-            if (totalSeconds > 0) {
-                totalSeconds--;
-            }
-        }
-
-        updateTimer();
-        setInterval(updateTimer, 1000);
-
-        // Optional: Track CTA clicks
+        // Track CTA clicks
         document.getElementById('ctaBtn').addEventListener('click', function(e) {
             // Add UTM params or tracking here
             // e.g., append ?ref=landing&source=email to the href
